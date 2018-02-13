@@ -1,0 +1,23 @@
+language: go
+go:
+  - 1.9
+
+notifications:
+  email: false
+
+
+before_install:
+  - git config --global user.email "travis@travis-ci.org"
+  - git config --global user.name "Travis CI"
+  - git config --global push.default simple
+  - go get -u github.com/gobuffalo/packr/...
+  - git remote set-url origin https://${GH_TOKEN}@github.com/jmattheis/go-packr-swagger-ui.git
+
+script:
+  - git clone --depth 1 https://github.com/swagger-api/swagger-ui.git swagger-ui
+  - sed -i -e 's/http:\/\/petstore.swagger.io\/v2\/swagger.json/..\/swagger/g' swagger-ui/dist/index.html
+  - packr
+  - rm -rf swagger-ui
+  - git add swaggerui-packr.go
+  - git commit -m "Update Swagger UI [ci skip]"
+  - git push -u origin HEAD:master
