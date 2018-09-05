@@ -18,6 +18,6 @@ script:
   - sed -i -e 's/http:\/\/petstore.swagger.io\/v2\/swagger.json/..\/swagger/g' swagger-ui/dist/index.html
   - packr
   - rm -rf swagger-ui
-  - git add swaggerui-packr.go
+  - git add a_swaggerui-packr.go
   - git commit -m "Update Swagger UI [ci skip]"
   - git push -u origin HEAD:master
