@@ -15,7 +15,7 @@ before_install:
 
 script:
   - git clone --depth 1 https://github.com/swagger-api/swagger-ui.git swagger-ui
-  - sed -i -e 's/http:\/\/petstore.swagger.io\/v2\/swagger.json/..\/swagger/g' swagger-ui/dist/index.html
+  - sed -i -e 's/https:\/\/petstore.swagger.io\/v2\/swagger.json/..\/swagger/g' swagger-ui/dist/index.html
   - packr
   - rm -rf swagger-ui
   - git add a_swaggerui-packr.go
